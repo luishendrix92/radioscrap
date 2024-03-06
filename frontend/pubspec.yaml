@@ -1,0 +1,24 @@
+name: rscrap
+description: "Displays songs scrapped from my favourite radio stations."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  mongo_dart: ^0.10.0
+  url_launcher: ^6.2.5
+  flutter_dotenv: ^5.1.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/91xlogo.png
+    - assets/magic925logo.png
+    - assets/z90logo.png
+    - .env

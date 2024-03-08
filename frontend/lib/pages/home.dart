@@ -38,14 +38,19 @@ class _MyHomePageState extends State<MyHomePage> {
     loadSongs();
   }
 
-  void launchVideo(String artist, String title) {
-    String query = '$artist $title'
-        .replaceAll(RegExp(r'\s+'), '+')
-        .replaceAll(RegExp(r'&'), 'and');
-    Uri ytURL =
-        Uri.parse('https://www.youtube.com/results?search_query=$query');
+  void launchVideo(Song song) async {
+    Uri ytURL;
 
-    launchUrl(ytURL);
+    if (song.video == null) {
+      String query = '$song.artist $song.title'
+          .replaceAll(RegExp(r'\s+'), '+')
+          .replaceAll(RegExp(r'&'), 'and');
+      ytURL = Uri.parse('https://www.youtube.com/results?search_query=$query');
+    } else {
+      ytURL = Uri.parse(song.video?.getURL() ?? "");
+    }
+
+    await launchUrl(ytURL);
   }
 
   Future<void> markAsSeen(dynamic songId) async {
@@ -99,9 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
               return Card(
                 color: Colors.white10,
                 child: ListTile(
-                  onTap: () {
-                    launchVideo(song.artist, song.title);
-                  },
+                  onTap: () => launchVideo(song),
                   leading: Image.asset(
                     logo(song.source),
                     width: 40.0,

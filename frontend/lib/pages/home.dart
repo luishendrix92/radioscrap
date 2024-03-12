@@ -41,8 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
   void launchVideo(Song song) async {
     Uri ytURL;
 
+    print('${song.artist} ${song.title}');
+
     if (song.video == null) {
-      String query = '$song.artist $song.title'
+      String query = '${song.artist} ${song.title}'
           .replaceAll(RegExp(r'\s+'), '+')
           .replaceAll(RegExp(r'&'), 'and');
       ytURL = Uri.parse('https://www.youtube.com/results?search_query=$query');
